@@ -7,11 +7,11 @@
 
 // WRITE YOUR CODE HERE
 //plus
-template <typename T>
-void plus(StackEnhanced<T>& stack)
+
+void adder(StackEnhanced<int>& stack)
 {
-    T a = stack.tpop();
-    T b = stack.tpop();
+    int a = stack.tpop();
+    int b = stack.tpop();
     stack.push(a+b);
 }
 
@@ -51,13 +51,7 @@ void negates(StackEnhanced<T>& stack)
     stack.push(-1*a);
 }
 
-template <typename T> class StackEnhanced2 : public StackEnhanced<T>
-{
-    public:
-    // Inherit the Stack<T> constructors as they are
-    // https://en.cppreference.com/w/cpp/language/using_declaration
-    using Stack<T>::Stack;
-};
+std::function<void(StackEnhanced<int>&)> plus = adder;
 
 /*
 template <typename T>
