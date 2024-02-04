@@ -6,5 +6,100 @@
 #include <functional>
 
 // WRITE YOUR CODE HERE
+//plus
+template <typename T>
+void plus(StackEnhanced<T>& stack)
+{
+    T a = stack.tpop();
+    T b = stack.tpop();
+    stack.push(a+b);
+}
+
+//minus
+template <typename T>
+void minus(StackEnhanced<T>& stack)
+{
+    T a = stack.tpop();
+    T b = stack.tpop();
+    stack.push(a-b);
+}
+
+
+//multiplies
+template <typename T>
+void multiplies(StackEnhanced<T>& stack)
+{
+    T a = stack.tpop();
+    T b = stack.tpop();
+    stack.push(a*b);
+}
+
+//divides
+template <typename T>
+void divides(StackEnhanced<T>& stack)
+{
+    T a = stack.tpop();
+    T b = stack.tpop();
+    stack.push(a/b);
+}
+
+//negates
+template <typename T>
+void negates(StackEnhanced<T>& stack)
+{
+    T a = stack.tpop();
+    stack.push(-1*a);
+}
+
+template <typename T> class StackEnhanced2 : public StackEnhanced<T>
+{
+    public:
+    // Inherit the Stack<T> constructors as they are
+    // https://en.cppreference.com/w/cpp/language/using_declaration
+    using Stack<T>::Stack;
+
+    void rpn(std::function<T(T,T)>& operation)
+    {
+        T a = this->tpop();
+        T b = this->tpop();
+
+        this->push(operation(a, b));
+    }
+
+    template <typename Func>
+    friend void operator<<(StackEnhanced2<int> stack, Func operation);
+};
+
+template <typename Func>
+void operator<<(StackEnhanced2<int> stack, Func operation)
+{
+    operation(*this);
+}
+
+
+/*
+template <typename T>
+std::function<void(StackEnhanced2<T>)> plus_ = [](StackEnhanced2<T>) 
+{
+    T a = stack.tpop();
+    T b = stack.tpop();
+    stack.push(a+b);
+};
+
+template <typename T>
+std::function<void()> multiplies_ = [&]()
+{
+    T a = stack.tpop();
+    T b = stack.tpop();
+    stack.push(a*b);
+};
+*/
+
+auto plus = [](auto& stack)
+{
+    auto a = stack.tpop();
+    auto b = stack.tpop();
+    stack.push(a+b);
+};
 
 #endif // __stack_rpn__

@@ -15,6 +15,14 @@ template <typename T> class StackEnhanced : public Stack<T>
         // WRITE YOUR CODE HERE
         this->_head = 0;
     }
+
+    T &tpop()
+    {
+        assert(this->_head > 0);
+        T a = this->top();
+        this->pop();
+        return a;
+    }
 };
 
 template <typename T>
