@@ -57,35 +57,9 @@ template <typename T> class StackEnhanced2 : public StackEnhanced<T>
     // Inherit the Stack<T> constructors as they are
     // https://en.cppreference.com/w/cpp/language/using_declaration
     using Stack<T>::Stack;
-
-    void rpn(std::function<T(T,T)>& operation)
-    {
-        T a = this->tpop();
-        T b = this->tpop();
-
-        this->push(operation(a, b));
-    }
-
-    template <typename Func>
-    friend void operator<<(StackEnhanced2<int> stack, Func operation);
 };
-
-template <typename Func>
-void operator<<(StackEnhanced2<int> stack, Func operation)
-{
-    operation(*this);
-}
-
 
 /*
-template <typename T>
-std::function<void(StackEnhanced2<T>)> plus_ = [](StackEnhanced2<T>) 
-{
-    T a = stack.tpop();
-    T b = stack.tpop();
-    stack.push(a+b);
-};
-
 template <typename T>
 std::function<void()> multiplies_ = [&]()
 {
@@ -95,11 +69,13 @@ std::function<void()> multiplies_ = [&]()
 };
 */
 
-auto plus = [](auto& stack)
+/*
+auto plus_ = [](auto& stack)
 {
     auto a = stack.tpop();
     auto b = stack.tpop();
     stack.push(a+b);
 };
+*/
 
 #endif // __stack_rpn__

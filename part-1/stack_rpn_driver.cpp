@@ -18,8 +18,8 @@ int main(int argc, char **argv)
     std::cout << "2 2 2 + * = " << stack.top() << '\n';
 
     // Advanced interface (optional)
-    stack << 2 << 2 << 3 << plus;
-    std::cout << "2 2 2 + * = " << stack.top() << '\n';
+    //stack << 2 << 2 << 3 << plus_;
+    //std::cout << "2 2 2 + * = " << stack.top() << '\n';
 
     return 0;
 }

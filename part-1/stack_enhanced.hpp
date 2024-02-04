@@ -2,6 +2,7 @@
 #define __stack_enhanced___
 
 #include "stack.hpp"
+#include <functional>
 
 template <typename T> class StackEnhanced : public Stack<T>
 {
@@ -23,7 +24,30 @@ template <typename T> class StackEnhanced : public Stack<T>
         this->pop();
         return a;
     }
+
+    /*
+    StackEnhanced<T> rpn(std::function<StackEnhanced<int>(StackEnhanced<int>)> operation)
+    {
+        this->push(operation(*this));
+        return *this;
+    }
+
+    StackEnhanced<T> &operator<<(std::function<StackEnhanced<int>(StackEnhanced<int>)> func)
+    {
+        this->rpn(func);
+        return *this;
+    }
+    */
 };
+
+/*
+std::function<StackEnhanced<int>(StackEnhanced<int>)> plus_ = [](StackEnhanced<int> stack) 
+{
+    int a = stack.tpop();
+    int b = stack.tpop();
+    stack.push(a+b);
+};
+*/
 
 template <typename T>
 StackEnhanced<T> &operator<<(StackEnhanced<T> &stack, const T &value)
