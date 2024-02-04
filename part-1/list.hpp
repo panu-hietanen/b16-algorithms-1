@@ -11,9 +11,7 @@ template <typename T> struct Node {
 
     Node() : value{}, next{nullptr} {}
     Node(const T &value, std::unique_ptr<Node<T>> next)
-        : value{value}, next{std::move(next)}
-    {
-    }
+        : value{value}, next{std::move(next)} {}
 };
 
 template <typename T>
