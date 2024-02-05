@@ -12,6 +12,7 @@ template <typename V> struct BinaryTreeEnhanced {
     std::unique_ptr<BinaryTreeEnhanced<V>> _right;
 
     // WRITE YOUR CODE HERE
+    BinaryTreeEnhanced<V> *_parent;
 
     friend V &value(BinaryTreeEnhanced *t) { return t->_value; }
     friend const V &value(const BinaryTreeEnhanced *t)
@@ -29,7 +30,7 @@ template <typename V> struct BinaryTreeEnhanced {
     friend BinaryTreeEnhanced *parent(const BinaryTreeEnhanced *t)
     {
         // WRITE YOUR CODE HERE
-        
+        return t->_parent;
     }
 };
 
@@ -40,8 +41,18 @@ make_binary_tree_enhanced(const V &value,
                           std::unique_ptr<BinaryTreeEnhanced<V>> l,
                           std::unique_ptr<BinaryTreeEnhanced<V>> r)
 {
-    return std::unique_ptr<BinaryTreeEnhanced<V>>{
-        new BinaryTreeEnhanced<V>{value, std::move(l), std::move(r)}};
+    BinaryTreeEnhanced<V>* T = new BinaryTreeEnhanced<V>{value, {}, {}};
+    if (l) 
+    {
+        l.get()->_parent = T;
+        T->_left = std::move(l);
+    }
+    if (r)
+    {
+        r.get()->_parent = T;
+        T->_right = std::move(r);
+    }
+    return std::unique_ptr<BinaryTreeEnhanced<V>>{T};
 }
 
 #endif // __binary_tree_enhanced__
