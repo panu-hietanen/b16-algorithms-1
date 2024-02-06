@@ -18,12 +18,10 @@ inline std::vector<int> decode_(const std::vector<hop_t> &DP, int v)
             break;
         }
     }
-
     if (v == start || DP[v].weight == inf)
     {
         return res;
     }
-
     int v_test = v;
     std::deque<int> d;
     d.push_back(v);
@@ -41,14 +39,11 @@ inline std::vector<int> decode_(const std::vector<hop_t> &DP, int v)
             v_test = DP[v_test].vertex;
         }
     }
-
     d.push_front(start);
-
     for (auto i = d.begin(); i != d.end(); ++i)
     {
         res.push_back(*i);
     }
-
     return res;
 }
 
@@ -58,10 +53,8 @@ inline std::vector<int> decode(const std::vector<hop_t> &DP, int v)
     {
         return {};
     }
-
     std::deque<int> d;
     int v_curr = v;
-
     while (DP[v_curr].weight != 0)
     {
         d.push_front(v_curr);
@@ -71,12 +64,10 @@ inline std::vector<int> decode(const std::vector<hop_t> &DP, int v)
             return {};
         }
     }
-
     if (v_curr != -1)
     {
         d.push_front(v_curr);
     }
-
     return std::vector<int>(d.begin(), d.end());
 }
 
