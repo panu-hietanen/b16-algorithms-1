@@ -70,4 +70,16 @@ template <typename K, typename V, typename H> class HashTable
     }
 };
 
+uint32_t hash(const std::string& str, const uint32_t m)
+{
+    uint32_t res = 0;
+    uint32_t i = 1;
+    for (const char& c : str)
+    {
+        res = (res + static_cast<int>(c) * i) % m;
+        i = i*256 % m;
+    }
+    return res % m;
+}
+
 #endif // __hash__
