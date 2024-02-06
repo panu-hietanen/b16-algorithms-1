@@ -15,7 +15,7 @@ int main(int argc, const char *argv[])
         print(DP);
         std::cout << std::endl;
     }
-
+    /*
     {
         int source = 2;
         std::cout << "Dijkstra from source " << source << std::endl;
@@ -23,6 +23,6 @@ int main(int argc, const char *argv[])
         print(DP);
         std::cout << std::endl;
     }
-
+    */
     return 0;
 }
