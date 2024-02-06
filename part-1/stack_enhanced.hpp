@@ -17,7 +17,7 @@ template <typename T> class StackEnhanced : public Stack<T>
         this->_head = 0;
     }
 
-    T &tpop()
+    T tpop()
     {
         assert(this->_head > 0);
         T a = this->top();
