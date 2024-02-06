@@ -75,7 +75,8 @@ std::vector<hop_t> dijkstra_(const SparseGraph &graph, const int source)
         for (int v = 0; v < V; ++v) 
         {
             float test_weight = inf;
-            for (auto iter : graph[v_star]) { if (iter.vertex == v) { test_weight = iter.weight; } }
+            for (auto iter : graph[v_star]) 
+            { if (iter.vertex == v) { test_weight = iter.weight; } }
             if (is_open[v] && std::isfinite(test_weight)) 
             {
 

@@ -19,6 +19,7 @@ int main(int argc, const char *argv[])
     }
     std::cout << std::endl;
 
+    
     for (int u = 0; u < (signed)graph.size(); ++u) {
         for (int v = 0; v < (signed)graph.size(); ++v) {
             auto path = decode(DP[u], v);
@@ -29,6 +30,7 @@ int main(int argc, const char *argv[])
             }
         }
     };
+    
 
     return 0;
 }

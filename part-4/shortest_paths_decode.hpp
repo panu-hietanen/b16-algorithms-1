@@ -8,6 +8,7 @@
 inline std::vector<int> decode(const std::vector<hop_t> &DP, int v)
 {
     // WRITE YOUR CODE HERE
+    
 }
 
 #endif // __shortest_paths_decode__
