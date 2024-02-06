@@ -25,28 +25,14 @@ template <typename T> class StackEnhanced : public Stack<T>
         return a;
     }
 
-
-    StackEnhanced<T> rpn(std::function<StackEnhanced<int>(StackEnhanced<int>)> operation)
-    {
-        this->push(operation(*this));
-        return *this;
-    }
-
-    StackEnhanced<int> &operator<<(std::function<void(StackEnhanced<int>)> func)
-    {
-        this->rpn(func);
-        return *this;
-    }
 };
 
-/*
-std::function<StackEnhanced<int>(StackEnhanced<int>)> plus_ = [](StackEnhanced<int> stack) 
+template <typename T>
+StackEnhanced<T> &operator<<(StackEnhanced<T> &stack, std::function<void(StackEnhanced<T>&)> func)
 {
-    int a = stack.tpop();
-    int b = stack.tpop();
-    stack.push(a+b);
-};
-*/
+    func(stack);
+    return stack;
+}
 
 template <typename T>
 StackEnhanced<T> &operator<<(StackEnhanced<T> &stack, const T &value)

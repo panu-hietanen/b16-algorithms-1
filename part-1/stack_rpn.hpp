@@ -2,6 +2,7 @@
 #define __stack_rpn__
 
 #include "stack.hpp"
+#include "stack_enhanced.hpp"
 #include <cassert>
 #include <functional>
 
@@ -16,60 +17,41 @@ void adder(StackEnhanced<int>& stack)
 }
 
 //minus
-template <typename T>
-void minus(StackEnhanced<T>& stack)
+void take_away(StackEnhanced<int>& stack)
 {
-    T a = stack.tpop();
-    T b = stack.tpop();
+    int a = stack.tpop();
+    int b = stack.tpop();
     stack.push(a-b);
 }
 
 
 //multiplies
-template <typename T>
-void multiplies(StackEnhanced<T>& stack)
+void multiply(StackEnhanced<int>& stack)
 {
-    T a = stack.tpop();
-    T b = stack.tpop();
+    int a = stack.tpop();
+    int b = stack.tpop();
     stack.push(a*b);
 }
 
 //divides
-template <typename T>
-void divides(StackEnhanced<T>& stack)
+void divide(StackEnhanced<int>& stack)
 {
-    T a = stack.tpop();
-    T b = stack.tpop();
+    int a = stack.tpop();
+    int b = stack.tpop();
     stack.push(a/b);
 }
 
 //negates
-template <typename T>
-void negates(StackEnhanced<T>& stack)
+void negate(StackEnhanced<int>& stack)
 {
-    T a = stack.tpop();
+    int a = stack.tpop();
     stack.push(-1*a);
 }
 
 std::function<void(StackEnhanced<int>&)> plus = adder;
-
-/*
-template <typename T>
-std::function<void()> multiplies_ = [&]()
-{
-    T a = stack.tpop();
-    T b = stack.tpop();
-    stack.push(a*b);
-};
-*/
-
-/*
-auto plus_ = [](auto& stack)
-{
-    auto a = stack.tpop();
-    auto b = stack.tpop();
-    stack.push(a+b);
-};
-*/
+std::function<void(StackEnhanced<int>&)> multiplies = multiply;
+std::function<void(StackEnhanced<int>&)> minus = take_away;
+std::function<void(StackEnhanced<int>&)> divides = divide;
+std::function<void(StackEnhanced<int>&)> negates = negate;
 
 #endif // __stack_rpn__
